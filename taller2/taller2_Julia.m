@@ -39,6 +39,7 @@ for row = 1:sz
 		pause(1);
         
     end
+    
 end
 
 
@@ -54,7 +55,7 @@ pause(2);
 for radiusFactor = 0.1:0.05:0.8         
     for theta = 0:5:360 
         
-        c = radiusFactor*sin(theta) + radiusFactor*cos(theta).*i;
+        c =  radiusFactor*cos(theta) + radiusFactor*sin(theta).*i ;
         
         % visualización del radio y ángulo para dar una idea de en qué punto se está
        
