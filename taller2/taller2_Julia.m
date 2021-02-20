@@ -1,13 +1,24 @@
-center = 0 + 0i;
-radious = 2;
+center = 0 + 0i;            %selección del punto para centrar la imagen
+radious = 2;                %selección del radio de vista para la imagen
+                            %ej: si el radio es 2 la imagen va a ir desde 
+                            %(centro - radio) hasta (centro + radio) para
+                            %la parte que varia en reales y también para la
+                            %parte que varía en imaginarios
+                            
+
+%creación de la malla de numeros complejos que contiene "todos" los puntos
+%de la caja de numeros complejos que va desde (centro -radio) hasta 
+%(centro + radio) en reales, y desde (centro - radio) hasta (centro + radio)
+%en imaginarios
 
 [z0, x, y] = createComplexGrid(1920, 1080, center, radious);
 
 
 %% En esta sección se hace un show random del conjunto de julia
+%a partir de la selección de parametro C de forma aleatoria
 
-sz  = 6 %determina el tamaño de la malla aleatoria que 
-        %va a ayudar a construir los valores constantes para c
+sz  = 6         %determina el tamaño de la malla aleatoria que 
+                %va a ayudar a construir los valores constantes para c
 
 %Genera la malla de valores aleatorios para C 
 realGrid = rand(sz);
@@ -30,14 +41,19 @@ for row = 1:sz
 end
 
 
+%% trayectoria de círculos concéntricos para variar c
+
 display("Inicio de trayectoria circular de variación para C")
 pause(2);
 
-steps = 0:2:360;
+% realmente esta trayectoria para variar c, se puede describir como 
+% circulos concéntricos desde circulo de radio 0.1 hasta 0.8
+% donde theta salta de 5 en 5 grados
 
-for radiusFactor = 0.1:0.05:0.8
-    for tetha = 0:5:360 
-        c = radiusFactor*sin(tetha) + radiusFactor*cos(tetha).*i;
+for radiusFactor = 0.1:0.05:0.8         
+    for theta = 0:5:360 
+        
+        c = radiusFactor*sin(theta) + radiusFactor*cos(theta).*i;
         r = abs(c)
         colors = arrayfun( @checkForJuliaSet, z0, c, 500);
         imagesc( x, y, colors);
