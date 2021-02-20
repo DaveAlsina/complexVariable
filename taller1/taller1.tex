@@ -1,0 +1,58 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{microtype} 
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\usepackage{amssymb}
+\usepackage{amsmath} %For being able to make comments inside the formulas as normal text
+\usepackage{amsthm}
+
+\usepackage{cancel} %in the preamble gives you four different modes of striking through
+
+\usepackage[a4paper, inner= 2cm, outer= 2cm,
+top= 2cm, bottom= 2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{animate}
+
+\title{Title}
+\author{David Alsina}
+\date{Diciembre 2020}
+
+\usepackage[dvipsnames]{xcolor}
+\definecolor{blueMacc}{RGB}{61, 160, 250}
+
+\begin{document}
+
+
+	\begin{enumerate}
+
+		\item Muestre lo siguiente:
+
+			\begin{enumerate}
+
+				\item $arg(z_{1}z_{2}z_{3}) = arg(z_{1}) + arg(z_{2}) + arg(z_{3})$
+				
+					\begin{align*}
+						arg(z_{1}z_{2}z_{3}) = arg((z_{1}z_{2})z_{3}) &= arg(r_{1}r_{2}\cdot cis(\theta_{1} + \theta_{2})z_{3})\\
+						&= arg( r_{1}r_{2}\cdot cis(\theta_{1} + \theta_{2})\cdot r_{3} \cdot cis(\theta_{3}))\\
+						&= arg( r_{1}r_{2}r_{3} \cdot cis(\theta_{1} + \theta_{2}) \cdot cis(\theta_{3}))\\
+						&= arg( r_{1}r_{2}r_{3} \cdot cis(\theta_{4})cis(\theta_{3})); \;\; \text{donde $\theta_{1}+\theta_{2} = \theta_{4}$}
+					\end{align*}
+
+					\begin{center}
+						siguiendo un argumento análogo al visto para $arg(z_{1}z_{2}) = arg(z_{1})+arg(z_{2})$ se tiene: 
+					\end{center}
+					\begin{align*}
+						&= arg( r_{1}r_{2}r_{3} cis(\theta_{4}+\theta_{3}))\\
+						&= arg( r_{1}r_{2}r_{3} cis(\theta_{1}+\theta_{2} + \theta_{3}))\\
+						&= arg( z_{1}z_{2}z_{3} ) = arg(\theta_{1}) + arg(\theta_{2}) + arg(\theta_{3})
+					\end{align*}
+
+			\end{enumerate}
+
+	\end{enumerate}
+
+\end{document}
