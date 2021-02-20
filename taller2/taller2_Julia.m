@@ -14,6 +14,10 @@ realGrid = rand(sz);
 imagGrid = rand(sz).*i;
 C = realGrid + imagGrid;
 
+
+display("Inicio de imágenes con parámetos C aleatorios")
+pause(2);
+
 for row = 1:sz
 	for col = 1:sz
 		
@@ -21,13 +25,13 @@ for row = 1:sz
 		colors = arrayfun( @checkForJuliaSet, z0, c, 1000);
 		imagesc( x, y, colors);
 		pause(1);
-        break;
+        
     end
-    break;
 end
 
-%xInterval = -2:0.1:2;
-%yInterval = -2:0.1:2;
+
+display("Inicio de trayectoria circular de variación para C")
+pause(2);
 
 steps = 0:2:360;
 
