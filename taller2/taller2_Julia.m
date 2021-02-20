@@ -18,7 +18,7 @@ radious = 2;                %selección del radio de vista para la imagen
 %% En esta sección se hace un show random del conjunto de julia
 %a partir de la selección de parametro C de forma aleatoria
 
-sz  = 6         %dethttps://plus.maths.org/content/computing-mandelbrot-setermina el tamaño de la malla aleatoria que 
+sz  = 6         %se determina el tamaño de la malla aleatoria que 
                 %va a ayudar a construir los valores constantes para c
 
 %Genera la malla de valores aleatorios para C 
