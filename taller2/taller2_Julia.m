@@ -11,6 +11,7 @@ radious = 2;                %selección del radio de vista para la imagen
 %(centro + radio) en reales, y desde (centro - radio) hasta (centro + radio)
 %en imaginarios
 
+%1920 y 1080 son las dimensiones de una imagen full HD
 [z0, x, y] = createComplexGrid(1920, 1080, center, radious);
 
 
@@ -54,13 +55,20 @@ for radiusFactor = 0.1:0.05:0.8
     for theta = 0:5:360 
         
         c = radiusFactor*sin(theta) + radiusFactor*cos(theta).*i;
-        r = abs(c)
+        
+        % visualización del radio y ángulo para dar una idea de en qué punto se está
+       
+        r = abs(c);
+        display([r, theta])
+        
+        %asignación de colores a la malla compleja centrada en 0 + 0i
+        %y con radio constante de 2
         colors = arrayfun( @checkForJuliaSet, z0, c, 500);
-        imagesc( x, y, colors);
-        pause(1/120);
+        
+        imagesc( x, y, colors); %generación de la imagen
+        pause(1/120);           %pausa para el espectador
     end
 end
-
 
 
 % FUENTES:
