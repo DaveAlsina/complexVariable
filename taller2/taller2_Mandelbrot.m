@@ -21,3 +21,10 @@ while (center < 1/4) || (radious > minimalRadious)
     end
     
 end
+
+% FUENTES:
+% https://www.mathworks.com/help/parallel-computing/gpuarray.html
+% https://www.mathworks.com/help/parallel-computing/illustrating-three-approaches-to-gpu-computing-the-mandelbrot-set.html;jsessionid=ce5b13303d727da26772217997f9
+% https://www.mathworks.com/help/parallel-computing/run-matlab-functions-on-a-gpu.html
+% https://plus.maths.org/content/computing-mandelbrot-set
+% https://www.mathworks.com/matlabcentral/answers/351622-how-to-iterate-through-matrix-with-rows-and-columns-changing-by-the-same-value

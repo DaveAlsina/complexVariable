@@ -20,3 +20,5 @@ function [complexGrid, xRange, yRange] = createComplexGrid(img_widht, img_height
     complexGrid = realgrid + imgrid.*i;
 end
     
+% FUENTES:
+% https://www.mathworks.com/help/parallel-computing/gpuarray.html
