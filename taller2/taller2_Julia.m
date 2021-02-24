@@ -34,7 +34,7 @@ for row = 1:sz
 	for col = 1:sz
 		
 		c = C(row,col);
-		colors = arrayfun( @checkForJuliaSet, z0, c, 3, 500);
+		colors = arrayfun( @checkForJuliaSet, z0, c, 2, 500);
 		imagesc( x, y, colors);
 		pause(1);
         
@@ -64,7 +64,7 @@ for radiusFactor = 0.1:0.05:0.8
         
         %asignación de colores a la malla compleja centrada en 0 + 0i
         %y con radio constante de 2
-        colors = arrayfun( @checkForJuliaSet, z0, c, 3, 500);
+        colors = arrayfun( @checkForJuliaSet, z0, c, 2, 500);
         
         imagesc( x, y, colors); %generación de la imagen
         pause(1/120);           %pausa para el espectador

@@ -30,6 +30,6 @@ complexGrid = realgrid + imgrid.*1i;
 %
 num_iteraciones = 500;
 colors = arrayfun( @checkForJuliaSet, complexGrid, c, n, num_iteraciones);
-img = imagesc( x, y, colors);
+img = imagesc( xRange, yRange, colors);
 end
 
