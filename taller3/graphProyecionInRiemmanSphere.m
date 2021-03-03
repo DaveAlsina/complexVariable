@@ -37,10 +37,7 @@ function [] = graphProyectionInRiemmanSphere(z, color)
         
         it = it + 1;    % aumenta la cuenta del iterador
     end
-
-    hold on
     plot3(x1, x2, x3, 'Color', color)
-    hold off
     
 end
 
