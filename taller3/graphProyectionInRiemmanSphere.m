@@ -1,4 +1,3 @@
-%% Graficamos en la esfera
 function [] = graphProyectionInRiemmanSphere(z, color)
 
     % Input: z, el vector con la serie de puntos que componen 
