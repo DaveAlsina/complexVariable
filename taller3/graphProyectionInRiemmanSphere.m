@@ -1,4 +1,4 @@
-function [] = graphProyectionInRiemmanSphere(z, color, Title)
+function [] = graphProyectionInRiemmanSphere(z, color, ax)
 
     % Input: z, el vector con la serie de puntos que componen 
     % las figuras en el plano complejo
@@ -6,16 +6,15 @@ function [] = graphProyectionInRiemmanSphere(z, color, Title)
     % Obtención de los puntos en X, Y y Z que componen 
     % la esfera para su posterior uso en graficación
     [X, Y, Z] = sphere; 
-
-    axis equal
-    grid on
-    title(Title);
-    xlabel('Real');
-    ylabel('Imaginario');
-    zlabel('Z');
+    hold(ax, 'on')
+    axis(ax, [-2 2 -2 2]);
+%     title(Title);
+%     xlabel('Real');
+%     ylabel('Imaginario');
+%     zlabel('Z');
     
     % 0.8*[1,1,1] -> gris en RGB
-    surf(X, Y, Z, 'FaceColor', 'none', 'EdgeColor', 0.8*[1,1,1])
+    surf(X, Y, Z, 'FaceColor', 'none', 'EdgeColor', 0.8*[1,1,1], 'Parent', ax)
 
     % creacion de 3 vectores del largo de z
     x1 = zeros(1, length(z));
@@ -40,10 +39,7 @@ function [] = graphProyectionInRiemmanSphere(z, color, Title)
         
         it = it + 1;    % aumenta la cuenta del iterador
     end
-    plot3(x1, x2, x3, 'Color', color)
     
+    plot3(x1, x2, x3, 'Color', color, 'Parent', ax)
+    view(ax,45,45)
 end
-
-% hold on
-% plot3(x, y, z, '.', 'MarkerSize', 15)
-% hold off
