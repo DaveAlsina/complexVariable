@@ -63,7 +63,7 @@ hold off;
 pause(10);
 close;
 
-
+%proyección 1 de las espirales del dominio 2 (anterioteme mencionado)
 hold on
     graphProyectionInRiemmanSphere(z2, 'Red', 'Proyección 2 de multiples espirales de Arquimedes');
     graphProyectionInRiemmanSphere(-z2, 'Green', 'Proyección 2 de multiples espirales de Arquimedes');
