@@ -1,4 +1,4 @@
-function [] = graphProyectionInRiemmanSphere(z, color)
+function [] = graphProyectionInRiemmanSphere(z, color, Title)
 
     % Input: z, el vector con la serie de puntos que componen 
     % las figuras en el plano complejo
@@ -9,7 +9,11 @@ function [] = graphProyectionInRiemmanSphere(z, color)
 
     axis equal
     grid on
-
+    title(Title);
+    xlabel('Real');
+    ylabel('Imaginario');
+    zlabel('Z');
+    
     % 0.8*[1,1,1] -> gris en RGB
     surf(X, Y, Z, 'FaceColor', 'none', 'EdgeColor', 0.8*[1,1,1])
 
@@ -23,13 +27,13 @@ function [] = graphProyectionInRiemmanSphere(z, color)
 
     % itera a través de la serie de puntos complejos que componen la
     % gráfica 
-    for num = z
+    for i = 1:length(z)
         
         % proyecta cada uno de los puntos complejos en la esfera de riemann
         % y guarda las componentes en x1, x2 y x3 de la proyección 
         % en los vectores con nombre correspondiente
         
-        [temp_a, temp_b, temp_c] = rectangularToSphere(real(num), imag(num));
+        [temp_a, temp_b, temp_c] = rectangularToSphere(real(z(i)), imag(z(i)));
         x1(it) = temp_a;
         x2(it) = temp_b;
         x3(it) = temp_c;
