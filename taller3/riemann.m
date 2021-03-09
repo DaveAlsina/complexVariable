@@ -15,9 +15,9 @@ t = 0:0.01:20*pi; %rango del parámetro para ayudar a graficar
 [x,y,z] = createHipocicloidCoordinates(k, r2, t);
 
 %% Espirales arquimedeanas
-center = 2 + 2.*i;
+center = 2 + 2*1i;
 [x1,y1,z1] = createArchimedeanSpiralCoords(2, 0.0001, t, center);
-center = 0 + 0.*i;
+center = 0 + 0*1i;
 [x2,y2,z2] = createArchimedeanSpiralCoords(2, 0.0001, t, center);
 
 %% grafica del hipocicloide
@@ -48,7 +48,7 @@ hold on
     graphProyectionInRiemmanSphere(z1.*i, 'Blue', 'Proyección 1 de multiples espirales de Arquimedes');
     graphProyectionInRiemmanSphere(-z1.*i, 'Black', 'Proyección 1 de multiples espirales de Arquimedes');
 hold off
-pause(100);
+pause(10);
 close;
 
 %% grafica 2 de las espirales

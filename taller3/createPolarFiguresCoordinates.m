@@ -1,4 +1,5 @@
 function [x,y,complex] = createPolarFiguresCoordinates(sincos,n,r)
+
 % Esta función crea rosas en coordenadas polares. Recibe como parámetros
 % 'sincos' que indica si se realiza la rosa por medio de la función seno o
 % coseno; 'n' que es una rosa de n pétalos si n es impar o 2n pétalos si n

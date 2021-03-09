@@ -4,7 +4,6 @@ function [x, y, z] = createArchimedeanSpiralCoords(thetaFactor, spacingFactor, t
     % (véase la fórmula r = b + a*(theta) )
     % factor de espaciado (b) que va variando en las distintas
     % espirales generadas
-    % 
 
     position = 1;
     x = zeros(1, length(theta));
@@ -13,15 +12,14 @@ function [x, y, z] = createArchimedeanSpiralCoords(thetaFactor, spacingFactor, t
     
    
     for angle = theta
-      %calculo de cada uno de los puntos de 
       r = (spacingFactor) + thetaFactor.*angle;
       y(position) = (r .* sin(thetaFactor .* angle)) + real(zCenter);
       x(position) = (r .* cos(thetaFactor .* angle)) + imag(zCenter); 
             
-      z(position) = x(position) + y(position).*i;
+      z(position) = x(position) + y(position).*1i;
       position = position + 1;
     end
    
 end
 
-%fuentes https://en.wikipedia.org/wiki/Archimedean_spiral 
+%fuente: https://en.wikipedia.org/wiki/Archimedean_spiral 

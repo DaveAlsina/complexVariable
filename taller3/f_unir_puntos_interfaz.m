@@ -1,17 +1,18 @@
 function [z_unidos] = f_unir_puntos_interfaz(z_puntos)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
 
-    t = 0:0.01:1;
-    z_unidos = zeros(1,length(t)*(length(z_puntos)-1)+length(z_puntos));
-    start = 1;
+    % input: arreglo de coordenadas en el plano (z_puntos)
+    % La función retorna todos los puntos que pertenecen a los segmentos  
+    % formados por z_puntos
 
-    for it = 2 :length(z_puntos)
-        segment_vector = linspace(z_puntos(it-1),z_puntos(it));
-        length(start: 1 :start + length(segment_vector)-1)
-        length(segment_vector)
-        z_unidos(start: start + length(segment_vector)-1) = segment_vector;
-        start = start +length(segment_vector);
+    z_unidos = [];
+    counter = 1;
+    
+    for it = 1:length(z_puntos)-1
+        for t = 0:0.01:1
+            point = ((1 - t)*z_puntos(it)) + (t*z_puntos(it + 1));
+            z_unidos(counter) = point;
+            counter = counter + 1;
+        end
     end
 end
 
