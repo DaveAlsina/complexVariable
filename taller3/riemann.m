@@ -73,13 +73,34 @@ pause(10);
 hold off
 
 
+% Gráfico 3 de múltiples espirógrafos!
 
+% Cambiando el valor del parámetro b0, se crean múltiples
+% espirógrafos, por lo que se hace necesario un for loop
+% para proyectarlos dentro de una sola esfera.
 a0 = 16;
 d0 = 7;
+
+% Gráfica del dominio!:
 for b0 = 8:15
+% Al modificarse b0 yo modifico t
 t = 0.01:0.01:((2*pi*b0)/gcd(a0, b0));
-z = createSpirographCoordinates(a0,b0,d0,t);
+% Utilizo la función para crear el dominio del espirógrafo.
+[x,y,~] = createSpirographCoordinates(a0,b0,d0,t);
 hold on
-graphProyectionInRiemmanSphere(z,'Blue','Proyección 3 de múltiples espirógrafos');
+% Grafico en 2D.
+graphComplexDomain(x, y,'Grafica 3 de múltiples espirógrafos','Red');
+hold off
+end
+
+
+for b0 = 8:15
+% Al modificarse b0 yo modifico t
+t = 0.01:0.01:((2*pi*b0)/gcd(a0, b0));
+% Utilizo la función para crear el espirógrafo.
+[~,~,z] = createSpirographCoordinates(a0,b0,d0,t);
+hold on
+% Proyecto los resultados en una gráfica en 3D.
+graphProyectionInRiemmanSphere(z,'Proyección 3 de múltiples espirógrafos','Blue')
 hold off
 end
