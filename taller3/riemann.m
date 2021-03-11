@@ -71,3 +71,15 @@ hold on
     graphProyectionInRiemmanSphere(-z2.*i, 'Black','Proyección 2 de multiples espirales de Arquimedes' );
 pause(10);
 hold off
+
+
+
+a0 = 16;
+d0 = 7;
+for b0 = 8:15
+t = 0.01:0.01:((2*pi*b0)/gcd(a0, b0));
+z = createSpirographCoordinates(a0,b0,d0,t);
+hold on
+graphProyectionInRiemmanSphere(z,'Blue','Proyección 3 de múltiples espirógrafos');
+hold off
+end
