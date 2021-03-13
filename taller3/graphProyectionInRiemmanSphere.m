@@ -8,8 +8,12 @@ function [] = graphProyectionInRiemmanSphere(z, color, Title)
     
     [X, Y, Z] = sphere; 
     % 0.8*[1,1,1] -> gris en RGB
+    grid on;
     surf(X, Y, Z, 'FaceColor', 'none', 'EdgeColor', 0.8*[1,1,1])
-
+    xlabel('X1');
+    ylabel('X2');
+    zlabel('X3');
+    
     % creacion de 3 vectores del largo de z
     x1 = zeros(1, length(z));
     x2 = zeros(1, length(z));
@@ -36,5 +40,5 @@ function [] = graphProyectionInRiemmanSphere(z, color, Title)
     
     plot3(x1, x2, x3, 'Color', color)
     title(Title);
-    view(45,45)
+    %view(50,50)
 end
