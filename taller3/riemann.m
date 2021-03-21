@@ -21,6 +21,15 @@ center = 0 + 0*1i;
 [x2,y2,z2] = createArchimedeanSpiralCoords(2, 0.0001, t, center);
 
 %% grafica del hipocicloide
+
+hold on
+    graphComplexDomain(x, y, 'Grafica 0 de multiples hipocicloides', 'Blue');
+    graphComplexDomain(-x, -y, 'Grafica 0 de multiples hipocicloides', 'Red');
+hold off 
+
+pause(10);
+close;
+
 hold on
     graphProyectionInRiemmanSphere(z, 'Blue', 'Grafica 0 de multiples hipocicloides')
     graphProyectionInRiemmanSphere(-z, 'Red', 'Grafica 0 de multiples hipocicloides')
