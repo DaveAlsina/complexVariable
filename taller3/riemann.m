@@ -82,7 +82,7 @@ pause(10);
 hold off
 
 
-% Gráfico 3 de múltiples espirógrafos!
+%% Gráfico 3 de múltiples espirógrafos!
 
 % Cambiando el valor del parámetro b0, se crean múltiples
 % espirógrafos, por lo que se hace necesario un for loop
@@ -101,7 +101,8 @@ hold on
 graphComplexDomain(x, y,'Grafica 3 de múltiples espirógrafos','Red');
 hold off
 end
-
+pause(10);
+close;
 
 for b0 = 8:15
 % Al modificarse b0 yo modifico t
