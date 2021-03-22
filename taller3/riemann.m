@@ -80,7 +80,7 @@ hold on
     graphProyectionInRiemmanSphere(-z2.*i, 'Black','Proyección 2 de multiples espirales de Arquimedes' );
 pause(10);
 hold off
-
+close;
 
 %% Gráfico 3 de múltiples espirógrafos!
 
