@@ -57,7 +57,7 @@ hold on
     graphProyectionInRiemmanSphere(z1.*i, 'Blue', 'Proyección 1 de multiples espirales de Arquimedes');
     graphProyectionInRiemmanSphere(-z1.*i, 'Black', 'Proyección 1 de multiples espirales de Arquimedes');
 hold off
-pause(60);
+pause(10);
 close;
 
 %% grafica 2 de las espirales
@@ -78,7 +78,7 @@ hold on
     graphProyectionInRiemmanSphere(-z2, 'Green', 'Proyección 2 de multiples espirales de Arquimedes');
     graphProyectionInRiemmanSphere(z2.*i, 'Blue', 'Proyección 2 de multiples espirales de Arquimedes');
     graphProyectionInRiemmanSphere(-z2.*i, 'Black','Proyección 2 de multiples espirales de Arquimedes' );
-pause(60);
+pause(10);
 hold off
 
 
