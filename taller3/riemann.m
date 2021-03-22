@@ -114,3 +114,88 @@ hold on
 graphProyectionInRiemmanSphere(z,'Blue','Proyección 3 de múltiples espirógrafos')
 hold off
 end
+pause(10);
+close;
+
+%% Gráfica 4. Rosas polares
+% Se crean 3 rosas polares de distinto radio (0.12, 0.7, 4) centradas en el origen 
+[x,y,complex] = createPolarFiguresCoordinates('sin',5,0.12);
+[x1,y1,complex1] = createPolarFiguresCoordinates('sin',5,0.7);
+[x2,y2,complex2] = createPolarFiguresCoordinates('sin',5,4);
+
+% Creación de la gráfica en el plano complejo
+hold on
+
+ax = subplot(1,1,1);
+title('Gráfica 4. Rosas polares')
+xlabel('Eje real')
+ylabel('Eje imaginario')
+
+% Se crean rosas de un determinado tamaño en distintas distancias con
+% respecto al centro. Se comienzan graficando las rosas más pequeñas 
+% centradas en puntos cerca del origen. Y luego se grafican las rosas más 
+% grandes ceentradas en puntos cada vez más alejados del origen
+for theta = 0:50:300
+    for r = linspace(0.2,1,4)
+        x = cosd(theta).*r;
+        y = -sind(theta).*1i.*r;
+        ncomplex = complex+x+y;
+        plot(ncomplex,'k')       
+    end
+end 
+
+for theta = 0:50:300
+    for r = linspace(1.5,5,4)
+        x = cosd(theta).*r;
+        y = -sind(theta).*1i.*r;
+        ncomplex = complex1+x+y;
+        plot(ncomplex,'r')       
+    end
+end 
+
+for theta = 0:50:300
+    for r = linspace(8,15,2)
+        x = cosd(theta).*r;
+        y = -sind(theta).*1i.*r;
+        ncomplex = complex2+x+y;
+        plot(ncomplex,'g')        
+    end
+end 
+
+ grid on
+ axis equal 
+
+hold off
+pause(10);
+close;
+
+hold on
+%Para hacerlo se utiliza la misma lógica anterior
+for theta = 0:50:300
+    for r = linspace(0.2,1,4)
+        x = cosd(theta).*r;
+        y = -sind(theta).*1i.*r;
+        ncomplex = complex+x+y;
+        graphProyectionInRiemmanSphere(ncomplex,'black','Proyección 4. Rosas polares')
+    end
+end 
+
+for theta = 0:50:300
+    for r = linspace(1.5,5,4)
+        x = cosd(theta).*r;
+        y = -sind(theta).*1i.*r;
+        ncomplex = complex1+x+y;
+        graphProyectionInRiemmanSphere(ncomplex,'red','Proyección 4. Rosas polares')
+    end
+end 
+
+for theta = 0:50:300
+    for r = linspace(8,15,2)
+        x = cosd(theta).*r;
+        y = -sind(theta).*1i.*r;
+        ncomplex = complex2+x+y;
+        graphProyectionInRiemmanSphere(ncomplex,'green','Proyección 4. Rosas polares')
+    end
+end 
+
+hold off
