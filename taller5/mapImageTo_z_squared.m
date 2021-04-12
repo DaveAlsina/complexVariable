@@ -2,7 +2,8 @@ function [] = mapImageToCircle(filename)
     
     %input: nombre de la imagen a transformar
     %output: matriz rgb de la imagen transformada
-   
+
+%% Leemos la imagen y definimos la transformación
     [X,cmap] = imread(filename);
     
     R = X(:,:,1);
@@ -20,8 +21,8 @@ function [] = mapImageToCircle(filename)
     
     [realgrid, imgrid] = meshgrid(xRange,yRange);
     complexGrid = realgrid + imgrid.*i;
-    transfGrid = (complexGrid).*(complexGrid);
-    
+    transfGrid = (complexGrid).*(complexGrid); % Aplicamos la transformación f(z) = z^2
+ %% Graficamos la transfromación de cada componente RGB  
     real_z1 = real(transfGrid);
     imag_z1 = imag(transfGrid);
     %plot(real_z1,imag_z1,'b*')
