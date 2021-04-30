@@ -4,19 +4,19 @@ function [] = visualize_XY_noisy_signal(x, xnoisy, y, ynoisy, theta)
     %%variando como función de theta (con ruido y sin ruido)
     subplot(2,1,1)
     hold on
-    plot(theta,xnoisy)
+    plot(theta,xnoisy, 'LineStyle', '-.')
     plot(theta,x)
     legend({'Señal con ruido', 'Señal sin ruido'})
     hold off
-    title(['Señal en el eje X variando con el tiempo'])
+    title(['Parte Real'])
     
     %% creación del segundo subplot donde se grafica la señal en Y
     %%variando como función de theta (con ruido y sin ruido)
     subplot(2,1,2)
     hold on
-    plot(theta,ynoisy)
+    plot(theta,ynoisy, 'LineStyle', '-.')
     plot(theta,y)
     legend({'Señal con ruido', 'Señal sin ruido'})
     hold off
-    title(['Señal en el eje Y variando con el tiempo'])
+    title(['Parte imaginaria'])
 end

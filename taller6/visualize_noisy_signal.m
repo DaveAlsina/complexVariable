@@ -5,7 +5,7 @@ function [] = visualize_noisy_signal(x, xnoisy, y, ynoisy, title_)
 
     hold on;
         plot(x, y, 'k');
-        plot(xnoisy ,ynoisy, 'b');
+        plot(xnoisy ,ynoisy, 'b', 'LineStyle', '-.');
         title([title_]);
     hold off;
 end
