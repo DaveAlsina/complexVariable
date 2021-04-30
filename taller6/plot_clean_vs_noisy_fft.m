@@ -1,7 +1,7 @@
-function PSDclean = plot_clean_vs_noisy_fft(samples, step, threshold, x)
+function coefs = plot_clean_vs_noisy_fft(samples, step, threshold, x)
     n = length(samples);
     coefs = fft(x, n);
-    PSD = abs(coefs/n); % power spectrum density
+    PSD = 2.*abs(coefs/n); % power spectrum density
     freq = 1/(step*n)*(0:n);
     L = 1:floor(n/2);
     
