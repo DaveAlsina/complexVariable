@@ -1,42 +1,51 @@
 %% inicialización de las variables
-dt = 0.01;
-theta = -2.*pi:dt:2.*pi;
+dt = 0.01;                  %seteo del delta de t para el parámetro que va a ayudar 
+                            %a generar la señal 
+theta = -2.*pi:dt:2.*pi;    %creación del parámetro para construcción de la señal
 
+%inicialización de las funciones de theta en X e Y que van a acabar
+%formando la señal
 x = 16.*(sin(theta)).^3;
 y = 13.*cos(theta) - 2.*cos(2 .* theta) - 2.*cos(3 .* theta) -cos(4.*theta);
-%x = sin(2.*theta) + sin(theta);
 
+%inicialización de los ruidos para X e Y con semillas de generación 
+%de números aleatorios distinta
 rng(0,'twister');
-noise1 = 0.2.*randn(length(x),1);
+noise1 = 0.3.*randn(length(x),1);
 
 rng(7,'twister');
-noise2 = 0.2.*randn(length(x),1);
+noise2 = 0.3.*randn(length(x),1);
 
 x2 = x + noise1';
 y2 = y + noise2';
-%% visualización 
+
+z = complex(x, y);
+z2 = complex(x2, y2);
+%% visualización de la señal ruidosa en X(parte real) e Y(parte imaginaria)
 
 visualize_XY_noisy_signal(x, x2, y, y2, theta);
-figure;
-visualize_noisy_signal(x, x2, y, y2, ['corazón ruidoso']);
 
-%% filtro para x2
-x2_fft = plot_clean_vs_noisy_fft(theta, 0.001, max(x2)/10, x2);
-x2_clean = ifft(x2_fft);
+%% visualización de la señal ruidosa completa en el plano 
+% contrastada con su versión no ruidosa
 
+visualize_noisy_signal(z, z2, ['corazón ruidoso']);
+
+%% obtención de los coeficientes de fourier y graficado de estos
+[z2_fft_clean] = plot_clean_vs_noisy_fft(theta, dt, max(abs(z2))/20, z2);
+z2_reconstruct = ifft(z2_fft_clean);
+
+%% graficado de los ángulos de los coeficientes de fourier
+plot_angles_fft(z, z2);
+
+%% muestra de la señal reconstruida a partir del filtrado de los 
+% coeficientes de fourier y la ifft
 figure 
-plot(theta, x2_clean);
+plot(z2_reconstruct);
+title(["Señal de corazón reconstruida"]);
 
-%% filtro para y2
-y2_fft = plot_clean_vs_noisy_fft(theta, 0.001, max(y2)/100, y2);
-y2_clean = ifft(y2_fft);
 
-%% muestra de las reconstrucciones independientes para X e Y usando ifft
 
-plot_XY_ifft(theta, x2_clean, y2_clean, 'X e Y reconstruidas con ifft y filtrado');
-
-%% intento de reconstrucción del corazón
-
-figure 
-plot(x2_clean, y2_clean)
+% fuentes: 
+% https://youtu.be/c249W6uc7ho?list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC
+% https://www.mathworks.com/help/matlab/ref/fft.html
 
