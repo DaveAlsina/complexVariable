@@ -31,8 +31,17 @@ visualize_XY_noisy_signal(x, x2, y, y2, theta);
 visualize_noisy_signal(z, z2, ['corazón ruidoso']);
 
 %% obtención de los coeficientes de fourier y graficado de estos
+% también se hace en estas lineas el filtrado agresivo de la señal
 [z2_fft_clean] = plot_clean_vs_noisy_fft(theta, dt, max(abs(z2))/20, z2);
 z2_reconstruct = ifft(z2_fft_clean);
+
+%% obtención de los coeficientes de fourier filtrados 
+%con un filtro menos agresivo
+
+z_fft = fft(z2);
+z_fft_clean2 = z_fft; 
+z_fft_clean2(2:98) = 0;
+z2_reconstruct2 = ifft(z_fft_clean2);
 
 %% graficado de los ángulos de los coeficientes de fourier
 plot_angles_fft(z, z2);
@@ -40,10 +49,13 @@ plot_angles_fft(z, z2);
 %% muestra de la señal reconstruida a partir del filtrado de los 
 % coeficientes de fourier y la ifft
 figure 
-plot(z2_reconstruct);
-title(["Señal de corazón reconstruida"]);
-
-%%
+hold on
+    plot(z2_reconstruct, '-b');
+    plot(z2_reconstruct2, '--r');
+    title(['Señal de corazón reconstruida']);
+    legend(['Filtro +'],['Filtro -']);
+hold off
+%% 
 visualize_XY_noisy_signal(x, real(z2_reconstruct), y, imag(z2_reconstruct), theta);
 
 % fuentes: 
