@@ -66,12 +66,19 @@ extra_filtered_fft(20:380) = 0;     %filtrado agresivo
 
 %% visualización de los resultados de los filtros aplicados
 
+reconstruction = ifft(noisy_coefs);
+reconstruction2 = ifft(extra_filtered_fft);
+
 hold on 
 title(["Resultados de los filtros aplicados"])
 plot(z, 'k');
-plot(ifft(noisy_coefs), '--r');
-plot(ifft(extra_filtered_fft), '--.b');
+plot(reconstruction, '--r');
+plot(reconstruction2, '--.b');
 legend(["Círculo Original", "Filtro -", "Filtro +"]);
 xlabel(["Eje Real"]);
 ylabel(["Eje Imaginario"]);
 hold off
+
+%% 
+visualize_XY_noisy_signal(xfinal, real(reconstruction2), yfinal, imag(reconstruction2));
+

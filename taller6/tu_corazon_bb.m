@@ -43,7 +43,8 @@ figure
 plot(z2_reconstruct);
 title(["Señal de corazón reconstruida"]);
 
-
+%%
+visualize_XY_noisy_signal(x, real(z2_reconstruct), y, imag(z2_reconstruct), theta);
 
 % fuentes: 
 % https://youtu.be/c249W6uc7ho?list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC
