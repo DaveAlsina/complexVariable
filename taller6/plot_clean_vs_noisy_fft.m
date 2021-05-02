@@ -13,8 +13,8 @@ function [coefs] = plot_clean_vs_noisy_fft(samples, step, threshold, x)
 
     figure
     hold on
-        plot(freq,abs(coefs2/n), '--b');
-        plot(freq,abs(coefs/n), 'r');
+        plot(freq,abs(coefs2), '--b');
+        plot(freq,abs(coefs), 'r');
         legend(['Número complejo con ruido'], ['Número complejo sin ruido']);
         title(['Amplitud de los Coeficientes de Fourier']);
     hold off

@@ -11,10 +11,10 @@ y = 13.*cos(theta) - 2.*cos(2 .* theta) - 2.*cos(3 .* theta) -cos(4.*theta);
 %inicialización de los ruidos para X e Y con semillas de generación 
 %de números aleatorios distinta
 rng(0,'twister');
-noise1 = 0.3.*randn(length(x),1);
+noise1 = 0.5.*randn(length(x),1);
 
 rng(7,'twister');
-noise2 = 0.3.*randn(length(x),1);
+noise2 = 0.5.*randn(length(x),1);
 
 x2 = x + noise1';
 y2 = y + noise2';
