@@ -25,39 +25,42 @@ noise2 = 0.2.*randn(length(x),1);
 x2 = x + noise1';
 y2 = y + noise2';
 
+z = complex(x, y);
+z2 = complex(x2, y2);
+
 %% Visualización
 
 figure
 visualize_XY_noisy_signal(x, x2, y, y2, theta);
 figure
-visualize_noisy_signal(x, x2, y, y2, ['Hipocicloide con ruido']);
+visualize_noisy_signal(z, z2, 'Hipocicloide con ruido');
 
-%% Filtro para x2
+%% Coeficientes de Fourier
 
-x2_fft = plot_clean_vs_noisy_fft(theta, 0.01, 1, x2);
-x2_clean = ifft(x2_fft);
+z2_fft_clean = plot_clean_vs_noisy_fft(theta, dt, max(abs(z2))/20, z2);
+z2_reconstruct = ifft(z2_fft_clean);
 
-figure 
-plot(theta, x2_clean);
+%% Coeficientes de Fourier filtrados (filtro suave)
 
-%% Filtro para y2
+z_fft = fft(z2);
+z_fft_clean2 = z_fft; 
+z_fft_clean2(2:98) = 0;
+z2_reconstruct2 = ifft(z_fft_clean2);
 
-y2_fft = plot_clean_vs_noisy_fft(theta, 0.01, 1, y2);
-y2_clean = ifft(y2_fft);
+%% Ángulo de los coeficientes de Fourier
 
-figure 
-plot(theta, y2_clean);
+plot_angles_fft(z, z2);
 
-%% Muestra de las reconstrucciones independientes para X e Y usando ifft
-
-plot_XY_ifft(theta, x2_clean, y2_clean, 'X e Y reconstruidas con ifft y filtrado');
-
-%% Reconstrucción del hipocicloide
+%% Señal reconstruida
 
 figure 
-plot(x2_clean, y2_clean)
+hold on
+    plot(z2_reconstruct, '-b');
+    plot(z2_reconstruct2, '--r');
+    title(['Señal del hipocicloide reconstruida']);
+    legend(['Filtro +'],['Filtro -']);
+hold off
 
+%% Parte real y parte imaginaria
 
-
-
-
+visualize_XY_noisy_signal(x, real(z2_reconstruct), y, imag(z2_reconstruct), theta);
