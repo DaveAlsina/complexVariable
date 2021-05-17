@@ -1,25 +1,25 @@
-%% Generación de valores en el plano de los complejos para recrear Batman:
+%% GeneraciÃ³n de valores en el plano de los complejos para recrear Batman:
 
 nMeasurements = 200; %cantidad de mediciones deseadas
 t = linspace(-15,15,nMeasurements); % t toma valores entre -15 y 15.
 %Se calculan los valores de X y Y en en plano de los complejos en el lado
 % izquierdo de la figura de Batman.
 [x,y,~] = createBatmanCoordinates(t);
-% Debido a la simetría de la figura, se recuperan los valores de la parte
+% Debido a la simetrÃ­a de la figura, se recuperan los valores de la parte
 % real para el lado derecho:
 xmirror = -flip(x);
 xfinal = [x, xmirror];
-%Como las unidades de X son muy pequeñas, se multiplica
-%Por un número grande para que así el FFT haga una buena reconstrucción.
+%Como las unidades de X son muy pequeÃ±as, se multiplica
+%Por un nÃºmero grande para que asÃ­ el FFT haga una buena reconstrucciÃ³n.
 %Para valores de casi 0, FFT no arroja resultados aceptables.
 xfinal = 1000000000000000*xfinal;
-% Debido a la simetría de la figura, se recuperan los valores de la parte
+% Debido a la simetrÃ­a de la figura, se recuperan los valores de la parte
 % imaginaria para el lado derecho:
 ymirror = flip(y);
 yfinal = [(y), ymirror];
 %%%%%%%%%%%
 
-%% Creación de la señal y añadido de ruido a la señal
+%% CreaciÃ³n de la seÃ±al y aÃ±adido de ruido a la seÃ±al
 
 rng(0,'twister');
 noise1 = 0.01.*randn(length(xfinal),1)';
@@ -27,23 +27,23 @@ noise1 = 0.01.*randn(length(xfinal),1)';
 rng(0,'twister');
 noise2 = 0.5.*randn(length(yfinal),1)';  
 
-% Señal sin ruido:
+% SeÃ±al sin ruido:
 z = complex(xfinal, yfinal);
-% Señal con ruido:
+% SeÃ±al con ruido:
 znoisy = complex(xfinal + noise1, yfinal + noise2);
 
 
-%% visualización de las componentes en x e y de la señal
-% en su versión con ruido y sin ruido
+%% visualizaciÃ³n de las componentes en x e y de la seÃ±al
+% en su versiÃ³n con ruido y sin ruido
 visualize_XY_noisy_signal(xfinal, real(znoisy), yfinal, imag(znoisy));
 
-%% visualización de la señal del círculo ruidoso y su señal sin ruido
+%% visualizaciÃ³n de la seÃ±al del cÃ­rculo ruidoso y su seÃ±al sin ruido
 visualize_noisy_signal(z, znoisy, ['Batman ruidoso']);
 
-%% obtención de los coeficientes de fourier
+%% obtenciÃ³n de los coeficientes de fourier
 
-% Mediante la función FFT se calculan los coeficientes de Fourier cuya
-% forma matemática vimos en clase.
+% Mediante la funciÃ³n FFT se calculan los coeficientes de Fourier cuya
+% forma matemÃ¡tica vimos en clase.
 clean_coefs = fft(z);
 noisy_coefs = fft(znoisy);
 
@@ -57,22 +57,23 @@ hold off
 %% plot angles
 plot_angles_fft(z, znoisy);
 
-%% limpieza de la señal del círculo fft ruidosa
+%% limpieza de la seÃ±al del cÃ­rculo fft ruidosa
 
 % Se impone in threshold de 20 por debajo del cual los coeficientes tienen
 % un vaor igual a 0, si es por encima se dejan los coeficientes
 % encontrados.
+
 indices1 = abs(noisy_coefs) > 30;
 noisy_coefs1 = noisy_coefs.*indices1;
-% Mediante la función ifft se reconstruye la señal.
+% Mediante la funciÃ³n ifft se reconstruye la seÃ±al.
 reconstruction1 = ifft(noisy_coefs1);
 
-% Se impone un threshold más bajo para ver cambios en la reconstrucción de
-% la señal.
+% Se impone un threshold mÃ¡s bajo para ver cambios en la reconstrucciÃ³n de
+% la seÃ±al.
 indices2 = abs(noisy_coefs) > 2;
 noisy_coefs2 = noisy_coefs.*indices2;
 reconstruction2 = ifft(noisy_coefs2);
-%% visualización de los resultados de los filtros aplicados
+%% visualizaciÃ³n de los resultados de los filtros aplicados
 
 hold on 
 title(['Resultados de los filtros aplicados'])
@@ -84,17 +85,28 @@ xlabel(['Eje Real']);
 ylabel(['Eje Imaginario']);
 hold off
 
-%% Análisis de más ruido en la señal %%
+%% AnÃ¡lisis de mÃ¡s ruido en la seÃ±al %%
 
-indices3 = (abs(noisy_coefs - 0.1)) > 2;
-noisy_coefs3 = (noisy_coefs - 0.1).*indices3;
-reconstruction3 = ifft(noisy_coefs3);
+%rng(0,'twister');
+noise3 = 2.5*0.01.*randn(length(xfinal),1)';
+rng(0,'twister');
+noise4 = 2.5*0.5.*randn(length(yfinal),1)';  
+% SeÃ±al con ruido:
+znoisy2 = complex(xfinal + noise3, yfinal + noise4);
+
+visualize_noisy_signal(z, znoisy2, ['Batman con ruido mayor'])
+
+noisy_coefs2 = fft(znoisy2);
+
+indices3 = (abs(noisy_coefs2)) > 2;
+noisy_coefs3 = (noisy_coefs2).*indices3;
+reconstruction4 = ifft(noisy_coefs3);
 
 hold on 
 title(['Resultados de los filtros aplicados'])
 plot(z, 'k');
 plot(reconstruction2, '--.r');
-plot(reconstruction3, '--.b');
+plot(reconstruction4, '--.b');
 legend('Batman Original','Batman Ruido Bajo','Batman Ruido Alto'); %, 'Filtro +'
 xlabel(['Eje Real']);
 ylabel(['Eje Imaginario']);
